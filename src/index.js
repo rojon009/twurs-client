@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  RecoilRoot
+} from 'recoil';
+import axios from 'axios';
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+
+axios.defaults.baseURL = 'http://localhost:5000/'
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
