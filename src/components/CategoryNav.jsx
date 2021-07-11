@@ -12,7 +12,7 @@ const CategoryNav = () => {
   }, [])
 
   return (
-    <div className="space-x-3 px-3 my-4">
+    <div className="space-x-3 px-3 my-4 flex overflow-x-auto">
       <NavLink
         className="px-3 py-1 border-blue-300 border rounded-full uppercase"
         activeClassName="bg-blue-300"

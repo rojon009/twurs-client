@@ -16,7 +16,7 @@ const CategoryPreview = () => {
   }, [category]);
 
   return (
-    <div>
+    <div className="w-full">
       <CategoryNav />
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 p-3 bg-gray-100">
         {products.map((product) => (

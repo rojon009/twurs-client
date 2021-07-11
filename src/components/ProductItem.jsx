@@ -58,7 +58,7 @@ const ProductItem = ({ product }) => {
       <span className="text-xl text-red-600">${price}</span>
       <span>Availability: {quantity}</span>
       {
-        role === 'users' &&
+        role !== 'admin' &&
         <>
           <div className="flex w-full space-x-3 mt-3">
             <button
