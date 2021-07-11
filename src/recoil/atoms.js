@@ -12,3 +12,8 @@ export const userDataState = atom({
     key: 'userDataState',
     default: {}
 })
+
+export const cartState = atom({
+    key: 'cartState',
+    default: []
+})

@@ -1,0 +1,11 @@
+import { selector } from "recoil";
+import { cartState } from "./atoms";
+
+export const cartCalcState = selector({
+    key: 'cartCalcState',
+    get: ({get}) => {
+        const cart = get(cartState)
+        let totalCost = cart.reduce((acc,cur) => cur.product.price * cur.quantity + acc ,0)
+        return totalCost;
+    }
+})

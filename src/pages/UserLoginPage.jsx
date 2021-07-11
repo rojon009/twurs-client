@@ -1,13 +1,21 @@
 import axios from "axios";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userDataState, userLoginState } from "../recoil/atoms";
 import InputGroup from "../components/InputGroup";
 import { useState } from "react";
+import { useHistory, useLocation, Redirect } from "react-router-dom";
 
 const UserLoginPage = () => {
+
+    const [userData, setUserData] = useRecoilState(userDataState);
+
     const [login, setLogin] = useState(true)
     const [userDetails, setUserDetails] = useRecoilState(userLoginState);
-    const setUserData = useSetRecoilState(userDataState);
+    
+    const location = useLocation();
+    const history = useHistory();
+    let { from } = location.state || { from: { pathname: '/' } }
+
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         if(login){
@@ -17,6 +25,7 @@ const UserLoginPage = () => {
                         setUserData(res.data);
                         localStorage.setItem('token',res.data.token);
                         localStorage.setItem('role','users');
+                        history.replace(from);
                     }
                 })
                 .catch(err => console.log(err))
@@ -33,7 +42,7 @@ const UserLoginPage = () => {
 
     
     
-    return (
+    return ( userData.email ? <Redirect to={from} /> :
         <div className="md:px-5 w-11/12 mx-auto md:w-3/5 lg:w-1/2">
             <h2 className="text-center text-4xl">{login ? 'Login' : 'Create Account'}</h2>
             <form onSubmit={handleLoginSubmit}>

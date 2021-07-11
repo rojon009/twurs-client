@@ -1,11 +1,17 @@
 import axios from "axios";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userDataState, userLoginState } from "../recoil/atoms";
 import InputGroup from "../components/InputGroup";
+import { useHistory, Redirect } from "react-router-dom";
 
 const AdminLoginPage = () => {
+
     const [userDetails, setUserDetails] = useRecoilState(userLoginState);
-    const setUserData = useSetRecoilState(userDataState);
+    const [userData, setUserData] = useRecoilState(userDataState);
+
+    const history = useHistory();
+    let { from } = { from: { pathname: '/dashboard' } }
+    
     const handleLoginSubmit = (e) => {
         e.preventDefault();
             axios.post('/admins/login',userDetails)
@@ -14,14 +20,14 @@ const AdminLoginPage = () => {
                         setUserData(res.data);
                         localStorage.setItem('token',res.data.token);
                         localStorage.setItem('role','admins');
+                        history.replace(from);
                     }
                 })
                 .catch(err => console.log(err))
         }
 
     
-    
-    return (
+        return ( userData.email ? <Redirect to={from} /> :
         <div className="md:px-5 w-11/12 mx-auto md:w-3/5 lg:w-1/2">
             <h2 className="text-center text-4xl">Login as Admin</h2>
             <form onSubmit={handleLoginSubmit}>

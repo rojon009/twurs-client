@@ -1,11 +1,11 @@
+import CategoryNav from "../components/CategoryNav";
 import ProductCollectionPreview from "../components/ProductCollectionPreview"
 
 const Homepage = () => {
     return (
         <div>
-            Hello there this is homepage
+            <CategoryNav />
             <ProductCollectionPreview />
-            
         </div>
     );
 };
