@@ -9,6 +9,8 @@ const UserLoginPage = () => {
 
     const [userData, setUserData] = useRecoilState(userDataState);
 
+    const [msg, setMsg] = useState('')
+
     const [login, setLogin] = useState(true)
     const [userDetails, setUserDetails] = useRecoilState(userLoginState);
 
@@ -21,11 +23,16 @@ const UserLoginPage = () => {
         if (login) {
             axios.post('/users/login', userDetails)
                 .then(res => {
-                    if (res) {
+                    if (Object.keys(res.data).length) {
                         setUserData(res.data);
                         localStorage.setItem('token', res.data.token);
                         localStorage.setItem('role', 'users');
                         history.replace(from);
+                    } else {
+                        setMsg('*Your given Info are not founded in database');
+                        setTimeout(() => {
+                            setMsg('')
+                        }, 4000);
                     }
                 })
                 .catch(err => console.log(err))
@@ -52,14 +59,15 @@ const UserLoginPage = () => {
                 <InputGroup label="Email" value={userDetails} onChange={setUserDetails} id="email" type="email" name="email" placeholder="Your Email" required />
                 <InputGroup label="Password" value={userDetails} onChange={setUserDetails} id="password" type="password" name="password" placeholder="Password" required />
                 <button className="bg-green-400 text-white px-20 py-2 mx-auto block" type="submit">{login ? 'Login' : 'Create Account'}</button>
+                <p className="text-center text-red-500">{msg}</p>
             </form>
             {
                 login ?
                     <h5 className="text-center py-5">Do not have any account? <button onClick={() => setLogin(false)} className="text-blue-600">Sign Up</button></h5>
                     :
                     <h5 className="text-center py-5">Already have an account? <button onClick={() => setLogin(true)} className="text-blue-600">Login</button></h5>
-
             }
+            
         </div>
     );
 };
