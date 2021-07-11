@@ -1,4 +1,4 @@
-const InputGroup = ({id, label, name, placeholder, type, value, onChange}) => {
+const InputGroup = ({ id, label, name, placeholder, type, value, onChange }) => {
 
     const handleOnChange = (e) => {
         onChange({

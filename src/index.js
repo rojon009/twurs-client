@@ -11,7 +11,8 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-axios.defaults.baseURL = 'http://localhost:5000/'
+axios.defaults.baseURL = 'https://twurs-tech-shop.herokuapp.com'
+// axios.defaults.baseURL = 'http://localhost:5000'
 
 
 ReactDOM.render(

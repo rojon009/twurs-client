@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import InputGroup from "./InputGroup";
+import InputGroup from "../../components/InputGroup";
 import { GiSpinningBlades } from "react-icons/gi";
 
-const AddProduct = () => {
+const AddProductPage = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
     price: "",
@@ -24,7 +24,6 @@ const AddProduct = () => {
       .then(res => setCategories(res.data))
       .catch(err => console.log(err))
   }, [])
-  console.log(categories);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,21 +40,21 @@ const AddProduct = () => {
           const imgUrl = response.data.data.display_url;
           if (imgUrl) {
             axios.post(
-                "/products/new",
-                {
-                  name: productDetails.name,
-                  price: productDetails.price,
-                  quantity: productDetails.quantity,
-                  category: productDetails.category,
-                  description: productDetails.description,
-                  imgUrl,
+              "/products/new",
+              {
+                name: productDetails.name,
+                price: productDetails.price,
+                quantity: productDetails.quantity,
+                category: productDetails.category,
+                description: productDetails.description,
+                imgUrl,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
                 },
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-                }
-              )
+              }
+            )
               .then((res) => {
                 if (res.data) {
                   setLoading(false);
@@ -195,4 +194,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddProductPage;

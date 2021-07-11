@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink, useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
-import AddProduct from '../components/AddProduct';
+import AddProductPage from './AddProductPage';
+import AdminOrdersPage from './AdminOrdersPage';
 
 const AdminDashboardPage = () => {
-    const {url, path} = useRouteMatch();
+    const { url, path } = useRouteMatch();
 
     return (
         <div className="min-h-screen">
@@ -19,10 +20,10 @@ const AdminDashboardPage = () => {
                             <Redirect to={`${path}/addProduct`} />
                         </Route>
                         <Route path={`${path}/addProduct`}>
-                            <AddProduct />
+                            <AddProductPage />
                         </Route>
                         <Route path={`${path}/orders`}>
-                            <h1 className="text-5xl">Orders</h1>
+                            <AdminOrdersPage />
                         </Route>
                         <Route path={`${path}/manageProduct`}>
                             <h1 className="text-5xl">Mange Product </h1>

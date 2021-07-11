@@ -1,5 +1,5 @@
-import CategoryNav from "../components/CategoryNav";
-import ProductCollectionPreview from "../components/ProductCollectionPreview"
+import CategoryNav from "../../components/CategoryNav";
+import ProductCollectionPreview from "../../components/ProductCollectionPreview"
 
 const Homepage = () => {
     return (
