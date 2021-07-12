@@ -32,7 +32,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className="flex justify-between items-center px-10">
+        <div className="flex justify-between items-center px-2 md:px-10">
             <NavLink to='/'>
                 <h1 className="text-4xl font-bold italic text-blue-500">TTS</h1>
             </NavLink>
@@ -48,8 +48,8 @@ const NavBar = () => {
                         <Menu as="div" className="relative">
                             <Menu.Button className="border-black border rounded px-2 py-1 flex items-center uppercase">{userData.name}<BiChevronDown className="w-6 h-6" /></Menu.Button>
                             <Menu.Items className="absolute bg-white space-y-2 z-10 border rounded shadow-md border-gray-500 top-9 right-0 flex flex-col p-2">
-                                <Menu.Item disabled>
-                                    <NavLink className="pl-4 py-1 pr-12 hover:bg-blue-400 hover:text-white rounded-sm" to="/">Profile</NavLink>
+                                <Menu.Item>
+                                    <NavLink className="pointer-events-none pl-4 py-1 pr-12 hover:bg-blue-400 hover:text-white rounded-sm" to="/">Profile</NavLink>
                                 </Menu.Item>
                                 {
                                     role === 'admins' && <Menu.Item>

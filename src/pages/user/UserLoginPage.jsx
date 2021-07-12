@@ -39,7 +39,6 @@ const UserLoginPage = () => {
         } else {
             axios.post('/users/new', userDetails)
                 .then(res => {
-                    console.log(res);
                     setUserData(res.data)
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('role', 'users');

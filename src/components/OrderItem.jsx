@@ -3,7 +3,7 @@ import React from 'react';
 const OrderItem = ({ order: { product, quantity } }) => {
     const { name, imgUrl, price } = product;
     return (
-        <div className="grid grid-cols-12 divide-y-2">
+        <div className="grid grid-cols-12 border-t-2">
             <img
                 className="h-16 w-16 object-contain col-span-2"
                 src={imgUrl}

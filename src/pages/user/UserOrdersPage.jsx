@@ -15,16 +15,19 @@ const UserOrdersPage = () => {
                 Authorization: `Bearer ${token}`,
             },
         })
-            .then(res => setOrders(res.data.products))
+            .then(res => setOrders(res.data?.products))
             .catch(err => console.log(err))
     }, [token])
 
-    return (
-        <div className="w-11/12 lg:w-9/12 mx-auto">
+    return ( orders?.length > 0 ?
+        <div className="w-11/12 lg:w-9/12 mx-auto mt-5 last:border-b-2">
+            <h2 className="py-3 text-xl underline">You have Ordered these products</h2>
             {
-                orders.map(order => <OrderItem key={order._id} order={order} />)
+                orders?.map(order => <OrderItem key={order._id} order={order} />)
             }
         </div>
+        :
+        <h1 className="text-lg text-center mt-20 text-red-400">You did not make any order yet to show.</h1>
     );
 };
 
